@@ -1,0 +1,14 @@
+algorithmClass: gate.plugin.learningframework.engines.AlgorithmClassification
+algorithmName: LIBSVM_CL
+classAnnotationType: null
+classLabels: null
+engineClass: gate.plugin.learningframework.engines.EngineLibSVM
+modelClass: null
+nrTargetValues: 0
+nrTrainingDimensions: 0
+nrTrainingDocuments: 0
+nrTrainingInstances: 4705
+targetFeature: adv
+task: CLASSIFIER
+trainerClass: libsvm.svm
+trainingCorpusName: training
