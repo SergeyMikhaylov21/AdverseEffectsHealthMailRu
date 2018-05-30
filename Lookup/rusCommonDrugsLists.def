@@ -1,0 +1,4 @@
+Drugs_Invitro.txt:Drug:Invitro
+Drugs_MailRu.txt:Drug:MailRu
+Drugs_DoctorOn_LowCase.txt:Drug:DoctorOn
+CommonAdverseEffects.txt:Adverse_Event:Different_Sources
