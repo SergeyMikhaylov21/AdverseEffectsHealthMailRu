@@ -1,0 +1,73 @@
+/*
+* Copyright (c) 1998-2001, The University of Sheffield.
+*
+*  This file is part of GATE (see http://gate.ac.uk/), and is free
+*  software, licenced under the GNU Library General Public License,
+*  Version 2, June 1991 (in the distribution as file licence.html,
+*  and also available at http://gate.ac.uk/gate/licence.html).
+*
+*
+*  MorphFeatures6.jape
+*
+*  Sergey Mikhaylov, 22 May 2018
+*
+*  $Id: MorphFeatures6.jape,v 1.17 2018-05-22 15:43:00 S_Mikhaylov $
+*/
+
+
+Phase: MorphFeatures6
+Input: Morph Split Lookup
+Options: control = appelt
+
+
+Rule: SingleDescrWords
+
+(
+	(
+		({Morph.baseForm == "ощущение"} | {Morph.baseForm == "чувство"} | {Morph.baseForm == "плохой"}
+		| {Morph.baseForm == "сильно"} | {Morph.baseForm == "сильный"} | {Morph.baseForm == "неприятный"})
+	): Feat
+): FullFeat
+-->
+{
+String text = null;
+
+//System.out.println ("===== rule SingleDescrWords ======");
+	AnnotationSet Feat_Set = (AnnotationSet)bindings.get("Feat");
+	FeatureMap Feat_Feat = Factory.newFeatureMap();
+	try {
+			text = (String) doc.getContent().getContent(Feat_Set.firstNode().getOffset(),Feat_Set.lastNode().getOffset()).toString();
+		}
+		catch(gate.util.InvalidOffsetException e) {
+			throw new java.lang.IndexOutOfBoundsException(e.toString());
+		}
+	Feat_Feat.put("string", text);
+	outputAS.add(Feat_Set.firstNode(), Feat_Set.lastNode(), "SingleDescrWords_Feat", Feat_Feat);
+}
+
+Rule: Disturbances3
+
+(
+	(
+		({Morph.baseForm == "ухудшаться"} | {Morph.baseForm == "пропасть", Morph.POST == "VERB"}
+		 | {Morph.baseForm == "потерять"})
+		({Morph})[0,7]
+		({Morph.baseForm == "аппетит"} | {Morph.baseForm == "сон"})
+	): Feat
+): FullFeat
+-->
+{
+String text = null;
+
+//System.out.println ("===== rule Disturbances3 ======");
+	AnnotationSet Feat_Set = (AnnotationSet)bindings.get("Feat");
+	FeatureMap Feat_Feat = Factory.newFeatureMap();
+	try {
+			text = (String) doc.getContent().getContent(Feat_Set.firstNode().getOffset(),Feat_Set.lastNode().getOffset()).toString();
+		}
+		catch(gate.util.InvalidOffsetException e) {
+			throw new java.lang.IndexOutOfBoundsException(e.toString());
+		}
+	Feat_Feat.put("string", text);
+	outputAS.add(Feat_Set.firstNode(), Feat_Set.lastNode(), "Disturbances3_Feat", Feat_Feat);
+}

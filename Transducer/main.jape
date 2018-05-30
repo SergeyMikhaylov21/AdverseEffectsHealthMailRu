@@ -1,0 +1,34 @@
+/*
+*  main.jape
+*
+* Copyright (c) 1998-2004, The University of Sheffield.
+*
+*  This file is part of GATE (see http://gate.ac.uk/), and is free
+*  software, licenced under the GNU Library General Public License,
+*  Version 2, June 1991 (in the distribution as file licence.html,
+*  and also available at http://gate.ac.uk/gate/licence.html).
+*
+*  Diana Maynard, 02 Aug 2001
+*
+*   changed by
+*  Sergey Mikhaylov, 16 Apr 2018
+*
+*  $Id: main.jape 9233 2018-04-16 11:00:00 S_Mikhaylov $
+*/
+
+
+MultiPhase:	FeaturesMain
+Phases:
+KeywordsFeaturesFirst
+KeywordsFeaturesSecond
+KeywordsFeaturesThird
+KeywordsFeaturesFourth
+KeywordsFeaturesFifth
+MorphFeatures1
+MorphFeatures2
+MorphFeatures3
+MorphFeatures4
+MorphFeatures5
+MorphFeatures6
+JointFeatures
+AllFeaturesOneAnnotation

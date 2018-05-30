@@ -1,0 +1,239 @@
+/*
+* Copyright (c) 1998-2001, The University of Sheffield.
+*
+*  This file is part of GATE (see http://gate.ac.uk/), and is free
+*  software, licenced under the GNU Library General Public License,
+*  Version 2, June 1991 (in the distribution as file licence.html,
+*  and also available at http://gate.ac.uk/gate/licence.html).
+*
+*
+*  JointFeatures.jape
+*
+*  Sergey Mikhaylov, 19 May 2018
+*
+*  $Id: JointFeatures.jape,v 1.17 2018-05-19 16:18:00 S_Mikhaylov $
+*/
+
+
+Phase: JointFeatures
+Input: Token Split Lookup AfterIntake_Feat AdverseWord_Feat Disturbances DisturbSingleWords
+	   AdverseWord_Feat AfterIntake_Feat BracketDescription_Feat ColonDescription_Feat
+	   DashDescription_Feat DisturbSingleWords_Feat Disturbances1_Feat Disturbances2_Feat OnXDay_Feat 
+	   Disturbances3_Feat Disturbances4_Feat PainVerbsMorph_Feat PatientActions_Feat Question_Feat
+	   Sequence_Feat SingleDescrWords_Feat SingleNO_Feat StartAppearMorph_Feat 
+	   WasGoodBut_Feat WasOK_Feat
+Options: control = appelt
+
+Rule: TwoAnnotation
+
+(
+	(
+		(
+			{Lookup} | {AfterIntake_Feat} | {AdverseWord_Feat} | {Disturbances} | {DisturbSingleWords} |
+			{AdverseWord_Feat} | {AfterIntake_Feat} | {BracketDescription_Feat} | {ColonDescription_Feat} |
+			{DashDescription_Feat} | {DisturbSingleWords_Feat} | {Disturbances1_Feat} | {OnXDay_Feat} |
+			{PainVerbsMorph_Feat} | {PatientActions_Feat} | {Sequence_Feat} | {SingleDescrWords_Feat} |
+			{SingleNO_Feat} | {StartAppearMorph_Feat} | {WasGoodBut_Feat} | {WasOK_Feat} |
+			{Disturbances2_Feat} | {Disturbances3_Feat} | {Disturbances4_Feat}
+		)
+		({Token, !Split})[0,4]
+		(
+			{Lookup} | {AfterIntake_Feat} | {AdverseWord_Feat} | {Disturbances} | {DisturbSingleWords} |
+			{AdverseWord_Feat} | {AfterIntake_Feat} | {BracketDescription_Feat} | {ColonDescription_Feat} |
+			{DashDescription_Feat} | {DisturbSingleWords_Feat} | {Disturbances1_Feat} | {OnXDay_Feat} |
+			{PainVerbsMorph_Feat} | {PatientActions_Feat} | {Sequence_Feat} | {SingleDescrWords_Feat} |
+			{SingleNO_Feat} | {StartAppearMorph_Feat} | {WasGoodBut_Feat} | {WasOK_Feat} | 
+			{Disturbances2_Feat} | {Disturbances3_Feat} | {Disturbances4_Feat}
+		)
+	): Feat
+): FullFeat
+-->
+{
+String text = null;
+
+//System.out.println ("===== rule TwoAnnotation ======");
+	AnnotationSet Feat_Set = (AnnotationSet)bindings.get("Feat");
+	FeatureMap Feat_Feat = Factory.newFeatureMap();
+	try {
+			text = (String) doc.getContent().getContent(Feat_Set.firstNode().getOffset(),Feat_Set.lastNode().getOffset()).toString();
+		}
+		catch(gate.util.InvalidOffsetException e) {
+			throw new java.lang.IndexOutOfBoundsException(e.toString());
+		}
+	Feat_Feat.put("string", text);
+	outputAS.add(Feat_Set.firstNode(), Feat_Set.lastNode(), "TwoAnnotation_Feat", Feat_Feat);
+}
+
+Rule: ThreeAnnotation
+
+(
+	(
+		(
+			{Lookup} | {AfterIntake_Feat} | {AdverseWord_Feat} | {Disturbances} | {DisturbSingleWords} |
+			{AdverseWord_Feat} | {AfterIntake_Feat} | {BracketDescription_Feat} | {ColonDescription_Feat} |
+			{DashDescription_Feat} | {DisturbSingleWords_Feat} | {Disturbances1_Feat} | {OnXDay_Feat} |
+			{PainVerbsMorph_Feat} | {PatientActions_Feat} | {Sequence_Feat} | {SingleDescrWords_Feat} |
+			{SingleNO_Feat} | {StartAppearMorph_Feat} | {WasGoodBut_Feat} | {WasOK_Feat} |
+			{Disturbances2_Feat} | {Disturbances3_Feat} | {Disturbances4_Feat}
+		)
+		({Token, !Split})[0,4]
+		(
+			{Lookup} | {AfterIntake_Feat} | {AdverseWord_Feat} | {Disturbances} | {DisturbSingleWords} |
+			{AdverseWord_Feat} | {AfterIntake_Feat} | {BracketDescription_Feat} | {ColonDescription_Feat} |
+			{DashDescription_Feat} | {DisturbSingleWords_Feat} | {Disturbances1_Feat} | {OnXDay_Feat} |
+			{PainVerbsMorph_Feat} | {PatientActions_Feat} | {Sequence_Feat} | {SingleDescrWords_Feat} |
+			{SingleNO_Feat} | {StartAppearMorph_Feat} | {WasGoodBut_Feat} | {WasOK_Feat} |
+			{Disturbances2_Feat} | {Disturbances3_Feat} | {Disturbances4_Feat}
+		)
+		({Token, !Split})[0,4]
+		(
+			{Lookup} | {AfterIntake_Feat} | {AdverseWord_Feat} | {Disturbances} | {DisturbSingleWords} |
+			{AdverseWord_Feat} | {AfterIntake_Feat} | {BracketDescription_Feat} | {ColonDescription_Feat} |
+			{DashDescription_Feat} | {DisturbSingleWords_Feat} | {Disturbances1_Feat} | {OnXDay_Feat} |
+			{PainVerbsMorph_Feat} | {PatientActions_Feat} | {Sequence_Feat} | {SingleDescrWords_Feat} |
+			{SingleNO_Feat} | {StartAppearMorph_Feat} | {WasGoodBut_Feat} | {WasOK_Feat} |
+			{Disturbances2_Feat} | {Disturbances3_Feat} | {Disturbances4_Feat}
+		)
+	): Feat
+): FullFeat
+-->
+{
+String text = null;
+
+//System.out.println ("===== rule ThreeAnnotation ======");
+	AnnotationSet Feat_Set = (AnnotationSet)bindings.get("Feat");
+	FeatureMap Feat_Feat = Factory.newFeatureMap();
+	try {
+			text = (String) doc.getContent().getContent(Feat_Set.firstNode().getOffset(),Feat_Set.lastNode().getOffset()).toString();
+		}
+		catch(gate.util.InvalidOffsetException e) {
+			throw new java.lang.IndexOutOfBoundsException(e.toString());
+		}
+	Feat_Feat.put("string", text);
+	outputAS.add(Feat_Set.firstNode(), Feat_Set.lastNode(), "ThreeAnnotation_Feat", Feat_Feat);
+}
+
+Rule: FourAnnotation
+
+(
+	(
+		(
+			{Lookup} | {AfterIntake_Feat} | {AdverseWord_Feat} | {Disturbances} | {DisturbSingleWords} |
+			{AdverseWord_Feat} | {AfterIntake_Feat} | {BracketDescription_Feat} | {ColonDescription_Feat} |
+			{DashDescription_Feat} | {DisturbSingleWords_Feat} | {Disturbances1_Feat} | {OnXDay_Feat} |
+			{PainVerbsMorph_Feat} | {PatientActions_Feat} | {Sequence_Feat} | {SingleDescrWords_Feat} |
+			{SingleNO_Feat} | {StartAppearMorph_Feat} | {WasGoodBut_Feat} | {WasOK_Feat} | 
+			{Disturbances2_Feat} | {Disturbances3_Feat} | {Disturbances4_Feat}
+		)
+		({Token, !Split})[0,4]
+		(
+			{Lookup} | {AfterIntake_Feat} | {AdverseWord_Feat} | {Disturbances} | {DisturbSingleWords} |
+			{AdverseWord_Feat} | {AfterIntake_Feat} | {BracketDescription_Feat} | {ColonDescription_Feat} |
+			{DashDescription_Feat} | {DisturbSingleWords_Feat} | {Disturbances1_Feat} | {OnXDay_Feat} |
+			{PainVerbsMorph_Feat} | {PatientActions_Feat} | {Sequence_Feat} | {SingleDescrWords_Feat} |
+			{SingleNO_Feat} | {StartAppearMorph_Feat} | {WasGoodBut_Feat} | {WasOK_Feat} |
+			{Disturbances2_Feat} | {Disturbances3_Feat} | {Disturbances4_Feat}
+		)
+		({Token, !Split})[0,4]
+		(
+			{Lookup} | {AfterIntake_Feat} | {AdverseWord_Feat} | {Disturbances} | {DisturbSingleWords} |
+			{AdverseWord_Feat} | {AfterIntake_Feat} | {BracketDescription_Feat} | {ColonDescription_Feat} |
+			{DashDescription_Feat} | {DisturbSingleWords_Feat} | {Disturbances1_Feat} | {OnXDay_Feat} |
+			{PainVerbsMorph_Feat} | {PatientActions_Feat} | {Sequence_Feat} | {SingleDescrWords_Feat} |
+			{SingleNO_Feat} | {StartAppearMorph_Feat} | {WasGoodBut_Feat} | {WasOK_Feat} | 
+			{Disturbances2_Feat} | {Disturbances3_Feat} | {Disturbances4_Feat}
+		)
+		({Token, !Split})[0,4]
+		(
+			{Lookup} | {AfterIntake_Feat} | {AdverseWord_Feat} | {Disturbances} | {DisturbSingleWords} |
+			{AdverseWord_Feat} | {AfterIntake_Feat} | {BracketDescription_Feat} | {ColonDescription_Feat} |
+			{DashDescription_Feat} | {DisturbSingleWords_Feat} | {Disturbances1_Feat} | {OnXDay_Feat} |
+			{PainVerbsMorph_Feat} | {PatientActions_Feat} | {Sequence_Feat} | {SingleDescrWords_Feat} |
+			{SingleNO_Feat} | {StartAppearMorph_Feat} | {WasGoodBut_Feat} | {WasOK_Feat} | 
+			{Disturbances2_Feat} | {Disturbances3_Feat} | {Disturbances4_Feat}
+		)
+	): Feat
+): FullFeat
+-->
+{
+String text = null;
+
+//System.out.println ("===== rule FourAnnotation ======");
+	AnnotationSet Feat_Set = (AnnotationSet)bindings.get("Feat");
+	FeatureMap Feat_Feat = Factory.newFeatureMap();
+	try {
+			text = (String) doc.getContent().getContent(Feat_Set.firstNode().getOffset(),Feat_Set.lastNode().getOffset()).toString();
+		}
+		catch(gate.util.InvalidOffsetException e) {
+			throw new java.lang.IndexOutOfBoundsException(e.toString());
+		}
+	Feat_Feat.put("string", text);
+	outputAS.add(Feat_Set.firstNode(), Feat_Set.lastNode(), "FourAnnotation_Feat", Feat_Feat);
+}
+
+Rule: FiveAnnotation
+
+(
+	(
+		(
+			{Lookup} | {AfterIntake_Feat} | {AdverseWord_Feat} | {Disturbances} | {DisturbSingleWords} |
+			{AdverseWord_Feat} | {AfterIntake_Feat} | {BracketDescription_Feat} | {ColonDescription_Feat} |
+			{DashDescription_Feat} | {DisturbSingleWords_Feat} | {Disturbances1_Feat} | {OnXDay_Feat} |
+			{PainVerbsMorph_Feat} | {PatientActions_Feat} | {Sequence_Feat} | {SingleDescrWords_Feat} |
+			{SingleNO_Feat} | {StartAppearMorph_Feat} | {WasGoodBut_Feat} | {WasOK_Feat} |
+			{Disturbances2_Feat} | {Disturbances3_Feat} | {Disturbances4_Feat}
+		)
+		({Token, !Split})[0,4]
+		(
+			{Lookup} | {AfterIntake_Feat} | {AdverseWord_Feat} | {Disturbances} | {DisturbSingleWords} |
+			{AdverseWord_Feat} | {AfterIntake_Feat} | {BracketDescription_Feat} | {ColonDescription_Feat} |
+			{DashDescription_Feat} | {DisturbSingleWords_Feat} | {Disturbances1_Feat} | {OnXDay_Feat} |
+			{PainVerbsMorph_Feat} | {PatientActions_Feat} | {Sequence_Feat} | {SingleDescrWords_Feat} |
+			{SingleNO_Feat} | {StartAppearMorph_Feat} | {WasGoodBut_Feat} | {WasOK_Feat} |
+			{Disturbances2_Feat} | {Disturbances3_Feat} | {Disturbances4_Feat}
+		)
+		({Token, !Split})[0,4]
+		(
+			{Lookup} | {AfterIntake_Feat} | {AdverseWord_Feat} | {Disturbances} | {DisturbSingleWords} |
+			{AdverseWord_Feat} | {AfterIntake_Feat} | {BracketDescription_Feat} | {ColonDescription_Feat} |
+			{DashDescription_Feat} | {DisturbSingleWords_Feat} | {Disturbances1_Feat} | {OnXDay_Feat} |
+			{PainVerbsMorph_Feat} | {PatientActions_Feat} | {Sequence_Feat} | {SingleDescrWords_Feat} |
+			{SingleNO_Feat} | {StartAppearMorph_Feat} | {WasGoodBut_Feat} | {WasOK_Feat} | 
+			{Disturbances2_Feat} | {Disturbances3_Feat} | {Disturbances4_Feat}
+		)
+		({Token, !Split})[0,4]
+		(
+			{Lookup} | {AfterIntake_Feat} | {AdverseWord_Feat} | {Disturbances} | {DisturbSingleWords} |
+			{AdverseWord_Feat} | {AfterIntake_Feat} | {BracketDescription_Feat} | {ColonDescription_Feat} |
+			{DashDescription_Feat} | {DisturbSingleWords_Feat} | {Disturbances1_Feat} | {OnXDay_Feat} |
+			{PainVerbsMorph_Feat} | {PatientActions_Feat} | {Sequence_Feat} | {SingleDescrWords_Feat} |
+			{SingleNO_Feat} | {StartAppearMorph_Feat} | {WasGoodBut_Feat} | {WasOK_Feat} | 
+			{Disturbances2_Feat} | {Disturbances3_Feat} | {Disturbances4_Feat}
+		)
+		({Token, !Split})[0,4]
+		(
+			{Lookup} | {AfterIntake_Feat} | {AdverseWord_Feat} | {Disturbances} | {DisturbSingleWords} |
+			{AdverseWord_Feat} | {AfterIntake_Feat} | {BracketDescription_Feat} | {ColonDescription_Feat} |
+			{DashDescription_Feat} | {DisturbSingleWords_Feat} | {Disturbances1_Feat} | {OnXDay_Feat} |
+			{PainVerbsMorph_Feat} | {PatientActions_Feat} | {Sequence_Feat} | {SingleDescrWords_Feat} |
+			{SingleNO_Feat} | {StartAppearMorph_Feat} | {WasGoodBut_Feat} | {WasOK_Feat} | 
+			{Disturbances2_Feat} | {Disturbances3_Feat} | {Disturbances4_Feat}
+		)
+	): Feat
+): FullFeat
+-->
+{
+String text = null;
+
+//System.out.println ("===== rule FiveAnnotation ======");
+	AnnotationSet Feat_Set = (AnnotationSet)bindings.get("Feat");
+	FeatureMap Feat_Feat = Factory.newFeatureMap();
+	try {
+			text = (String) doc.getContent().getContent(Feat_Set.firstNode().getOffset(),Feat_Set.lastNode().getOffset()).toString();
+		}
+		catch(gate.util.InvalidOffsetException e) {
+			throw new java.lang.IndexOutOfBoundsException(e.toString());
+		}
+	Feat_Feat.put("string", text);
+	outputAS.add(Feat_Set.firstNode(), Feat_Set.lastNode(), "FiveAnnotation_Feat", Feat_Feat);
+}

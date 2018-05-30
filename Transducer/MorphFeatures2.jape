@@ -1,0 +1,76 @@
+/*
+* Copyright (c) 1998-2001, The University of Sheffield.
+*
+*  This file is part of GATE (see http://gate.ac.uk/), and is free
+*  software, licenced under the GNU Library General Public License,
+*  Version 2, June 1991 (in the distribution as file licence.html,
+*  and also available at http://gate.ac.uk/gate/licence.html).
+*
+*
+*  MorphFeatures2.jape
+*
+*  Sergey Mikhaylov, 19 May 2018
+*
+*  $Id: MorphFeatures2.jape,v 1.17 2018-05-22 13:42:00 S_Mikhaylov $
+*/
+
+
+Phase: MorphFeatures2
+Input: Morph Split Lookup
+Options: control = appelt
+
+
+Rule: StartAppearMorph
+
+(
+	(
+		({Morph.baseForm == "начаться"} | {Morph.baseForm == "появиться"} | {Morph.baseForm == "стать", Morph.POST == "VERB"}
+		| {Morph.baseForm == "становиться"} | {Morph.baseForm == "начать"})
+		({Morph})[0,7]
+		({Morph.baseForm == "повышаться"} | {Morph.baseForm == "подниматься"} | {Morph.baseForm == "понижаться"}
+		| {Morph.baseForm == "понизиться"} | {Morph.baseForm == "болеть"} | {Morph.baseForm == "беспокоить"}
+		| {Morph.baseForm == "побаливать"} | {Morph.baseForm == "ныть"})?
+	): Feat
+): FullFeat
+-->
+{
+String text = null;
+
+//System.out.println ("===== rule StartAppearMorph ======");
+	AnnotationSet Feat_Set = (AnnotationSet)bindings.get("Feat");
+	FeatureMap Feat_Feat = Factory.newFeatureMap();
+	try {
+			text = (String) doc.getContent().getContent(Feat_Set.firstNode().getOffset(),Feat_Set.lastNode().getOffset()).toString();
+		}
+		catch(gate.util.InvalidOffsetException e) {
+			throw new java.lang.IndexOutOfBoundsException(e.toString());
+		}
+	Feat_Feat.put("string", text);
+	outputAS.add(Feat_Set.firstNode(), Feat_Set.lastNode(), "StartAppearMorph_Feat", Feat_Feat);
+}
+
+Rule: InInternetInstruction2
+
+(
+	(
+		({Morph.baseForm == "инструкция"} | {Morph.baseForm ==~ "[Ии]нтернет"})
+		({Morph})[0,7]
+		({Morph.baseForm == "прочитать"} | {Morph.baseForm == "читать"} | {Morph.baseForm == "вычитать"})
+	): Feat
+): FullFeat
+-->
+{
+String text = null;
+
+//System.out.println ("===== rule InInternetInstruction2 ======");
+	AnnotationSet Feat_Set = (AnnotationSet)bindings.get("Feat");
+	FeatureMap Feat_Feat = Factory.newFeatureMap();
+	try {
+			text = (String) doc.getContent().getContent(Feat_Set.firstNode().getOffset(),Feat_Set.lastNode().getOffset()).toString();
+		}
+		catch(gate.util.InvalidOffsetException e) {
+			throw new java.lang.IndexOutOfBoundsException(e.toString());
+		}
+	Feat_Feat.put("string", text);
+	outputAS.add(Feat_Set.firstNode(), Feat_Set.lastNode(), "InInternetInstruction2_Feat", Feat_Feat);
+}

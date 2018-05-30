@@ -1,0 +1,100 @@
+/*
+* Copyright (c) 1998-2001, The University of Sheffield.
+*
+*  This file is part of GATE (see http://gate.ac.uk/), and is free
+*  software, licenced under the GNU Library General Public License,
+*  Version 2, June 1991 (in the distribution as file licence.html,
+*  and also available at http://gate.ac.uk/gate/licence.html).
+*
+*
+*  MorphFeatures3.jape
+*
+*  Sergey Mikhaylov, 22 May 2018
+*
+*  $Id: MorphFeatures3.jape,v 1.17 2018-05-22 13:42:00 S_Mikhaylov $
+*/
+
+
+Phase: MorphFeatures3
+Input: Morph Split Lookup
+Options: control = appelt
+
+
+Rule: PatientActions
+
+(
+	(
+		({Morph.baseForm == "испугаться"} | {Morph.baseForm == "бояться"} | {Morph.baseForm == "беспокоиться"}
+		| {Morph.baseForm == "думать"} | {Morph.baseForm == "переживать"} | {Morph.baseForm == "прочитать"}
+		| {Morph.baseForm == "читать"} | {Morph.baseForm == "вычитать"} | {Morph.baseForm == "принимать"}
+		| {Morph.baseForm == "действовать"} | {Morph.baseForm == "пропить"} | {Morph.baseForm == "указать"})
+	): Feat
+): FullFeat
+-->
+{
+String text = null;
+
+//System.out.println ("===== rule PatientActions ======");
+	AnnotationSet Feat_Set = (AnnotationSet)bindings.get("Feat");
+	FeatureMap Feat_Feat = Factory.newFeatureMap();
+	try {
+			text = (String) doc.getContent().getContent(Feat_Set.firstNode().getOffset(),Feat_Set.lastNode().getOffset()).toString();
+		}
+		catch(gate.util.InvalidOffsetException e) {
+			throw new java.lang.IndexOutOfBoundsException(e.toString());
+		}
+	Feat_Feat.put("string", text);
+	outputAS.add(Feat_Set.firstNode(), Feat_Set.lastNode(), "PatientActions_Feat", Feat_Feat);
+}
+
+Rule: InInternetInstruction1
+
+(
+	(
+		({Morph.baseForm == "прочитать"} | {Morph.baseForm == "читать"} | {Morph.baseForm == "вычитать"})
+		({Morph})[0,7]
+		({Morph.baseForm == "инструкция"} | {Morph.baseForm ==~ "[Ии]нтернет"})
+	): Feat
+): FullFeat
+-->
+{
+String text = null;
+
+//System.out.println ("===== rule InInternetInstruction1 ======");
+	AnnotationSet Feat_Set = (AnnotationSet)bindings.get("Feat");
+	FeatureMap Feat_Feat = Factory.newFeatureMap();
+	try {
+			text = (String) doc.getContent().getContent(Feat_Set.firstNode().getOffset(),Feat_Set.lastNode().getOffset()).toString();
+		}
+		catch(gate.util.InvalidOffsetException e) {
+			throw new java.lang.IndexOutOfBoundsException(e.toString());
+		}
+	Feat_Feat.put("string", text);
+	outputAS.add(Feat_Set.firstNode(), Feat_Set.lastNode(), "InInternetInstruction1_Feat", Feat_Feat);
+}
+
+Rule: Disturbances4
+
+(
+	(
+		({Morph.baseForm == "ухудшаться"})
+		({Morph})[0,7]
+		({Morph.baseForm == "состояние"} | {Morph.baseForm == "самочувствие"})
+	): Feat
+): FullFeat
+-->
+{
+String text = null;
+
+//System.out.println ("===== rule Disturbances4 ======");
+	AnnotationSet Feat_Set = (AnnotationSet)bindings.get("Feat");
+	FeatureMap Feat_Feat = Factory.newFeatureMap();
+	try {
+			text = (String) doc.getContent().getContent(Feat_Set.firstNode().getOffset(),Feat_Set.lastNode().getOffset()).toString();
+		}
+		catch(gate.util.InvalidOffsetException e) {
+			throw new java.lang.IndexOutOfBoundsException(e.toString());
+		}
+	Feat_Feat.put("string", text);
+	outputAS.add(Feat_Set.firstNode(), Feat_Set.lastNode(), "Disturbances4_Feat", Feat_Feat);
+}

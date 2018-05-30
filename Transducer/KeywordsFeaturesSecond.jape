@@ -1,0 +1,71 @@
+/*
+* Copyright (c) 1998-2001, The University of Sheffield.
+*
+*  This file is part of GATE (see http://gate.ac.uk/), and is free
+*  software, licenced under the GNU Library General Public License,
+*  Version 2, June 1991 (in the distribution as file licence.html,
+*  and also available at http://gate.ac.uk/gate/licence.html).
+*
+*
+*  KeywordsFeaturesSecond.jape
+*
+*  Sergey Mikhaylov, 19 May 2018
+*
+*  $Id: KeywordsFeaturesSecond.jape,v 1.17 2018-05-19 16:52:00 S_Mikhaylov $
+*/
+
+
+Phase: KeywordsFeaturesSecond
+Input: Token Split Lookup
+Options: control = appelt
+
+
+Rule: SingleNO
+
+(
+	(
+		({Token.string ==~ "[Нн]о"})
+	): Feat
+): FullFeat
+-->
+{
+String text = null;
+
+//System.out.println ("===== rule SingleNO ======");
+	AnnotationSet Feat_Set = (AnnotationSet)bindings.get("Feat");
+	FeatureMap Feat_Feat = Factory.newFeatureMap();
+	try {
+			text = (String) doc.getContent().getContent(Feat_Set.firstNode().getOffset(),Feat_Set.lastNode().getOffset()).toString();
+		}
+		catch(gate.util.InvalidOffsetException e) {
+			throw new java.lang.IndexOutOfBoundsException(e.toString());
+		}
+	Feat_Feat.put("string", text);
+	outputAS.add(Feat_Set.firstNode(), Feat_Set.lastNode(), "SingleNO_Feat", Feat_Feat);
+}
+
+Rule: Sequence
+
+(
+	(
+		({Token.string ==~ "[Пп]очти"})?
+		({Token.string ==~ "[Сс]разу"} | {Token.string ==~ "[Тт]еперь"} | {Token.string ==~ "[Пп]отом"}
+		| {Token.string ==~ "[Пп]осле"})
+	): Feat
+): FullFeat
+-->
+{
+String text = null;
+
+//System.out.println ("===== rule Sequence ======");
+	AnnotationSet Feat_Set = (AnnotationSet)bindings.get("Feat");
+	FeatureMap Feat_Feat = Factory.newFeatureMap();
+	try {
+			text = (String) doc.getContent().getContent(Feat_Set.firstNode().getOffset(),Feat_Set.lastNode().getOffset()).toString();
+		}
+		catch(gate.util.InvalidOffsetException e) {
+			throw new java.lang.IndexOutOfBoundsException(e.toString());
+		}
+	Feat_Feat.put("string", text);
+	outputAS.add(Feat_Set.firstNode(), Feat_Set.lastNode(), "Sequence_Feat", Feat_Feat);
+}

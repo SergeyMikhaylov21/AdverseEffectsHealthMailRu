@@ -1,0 +1,96 @@
+/*
+* Copyright (c) 1998-2001, The University of Sheffield.
+*
+*  This file is part of GATE (see http://gate.ac.uk/), and is free
+*  software, licenced under the GNU Library General Public License,
+*  Version 2, June 1991 (in the distribution as file licence.html,
+*  and also available at http://gate.ac.uk/gate/licence.html).
+*
+*
+*  KeywordsFeaturesFirst.jape
+*
+*  Sergey Mikhaylov, 19 May 2018
+*
+*  $Id: KeywordsFeaturesFirst.jape,v 1.17 2018-05-19 16:17:00 S_Mikhaylov $
+*/
+
+
+Phase: KeywordsFeaturesFirst
+Input: Token Split Lookup
+Options: control = appelt
+
+Rule: QuestionMark
+
+(
+	(
+		({Token.string == "?"})
+	): Feat
+): FullFeat	
+-->
+{
+String text = null;
+
+//System.out.println ("===== rule QuestionMark ======");
+	AnnotationSet Feat_Set = (AnnotationSet)bindings.get("Feat");
+	FeatureMap Feat_Feat = Factory.newFeatureMap();
+	try {
+			text = (String) doc.getContent().getContent(Feat_Set.firstNode().getOffset(),Feat_Set.lastNode().getOffset()).toString();
+		}
+		catch(gate.util.InvalidOffsetException e) {
+			throw new java.lang.IndexOutOfBoundsException(e.toString());
+		}
+	Feat_Feat.put("string", text);
+	outputAS.add(Feat_Set.firstNode(), Feat_Set.lastNode(), "Question_Feat", Feat_Feat);
+}
+
+Rule: OnXDay
+
+(
+	(
+		({Token.string ==~ "[Нн]а"})
+		({Token, !Split})[0,3]
+		({Token.string == "день"})
+	): Feat
+): FullFeat
+-->
+{
+String text = null;
+
+//System.out.println ("===== rule OnXDay ======");
+	AnnotationSet Feat_Set = (AnnotationSet)bindings.get("Feat");
+	FeatureMap Feat_Feat = Factory.newFeatureMap();
+	try {
+			text = (String) doc.getContent().getContent(Feat_Set.firstNode().getOffset(),Feat_Set.lastNode().getOffset()).toString();
+		}
+		catch(gate.util.InvalidOffsetException e) {
+			throw new java.lang.IndexOutOfBoundsException(e.toString());
+		}
+	Feat_Feat.put("string", text);
+	outputAS.add(Feat_Set.firstNode(), Feat_Set.lastNode(), "OnXDay_Feat", Feat_Feat);
+}
+
+Rule: AdverseWord
+
+(
+	(
+		({Token.string ==~ "[Бб]ы[л|ла]"})?
+		({Token.string ==~ "[Пп]обоч(.+)"} | {Token.string ==~ "[Рр]еакц(.+)"})
+		({Token.string ==~ "эффек(.+)"} | {Token.string ==~ "реакц(.+)"})?
+	): Feat
+): FullFeat
+-->
+{
+String text = null;
+
+//System.out.println ("===== rule AdverseWord ======");
+	AnnotationSet Feat_Set = (AnnotationSet)bindings.get("Feat");
+	FeatureMap Feat_Feat = Factory.newFeatureMap();
+	try {
+			text = (String) doc.getContent().getContent(Feat_Set.firstNode().getOffset(),Feat_Set.lastNode().getOffset()).toString();
+		}
+		catch(gate.util.InvalidOffsetException e) {
+			throw new java.lang.IndexOutOfBoundsException(e.toString());
+		}
+	Feat_Feat.put("string", text);
+	outputAS.add(Feat_Set.firstNode(), Feat_Set.lastNode(), "AdverseWord_Feat", Feat_Feat);
+}

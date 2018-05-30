@@ -1,0 +1,676 @@
+/*
+* Copyright (c) 1998-2001, The University of Sheffield.
+*
+*  This file is part of GATE (see http://gate.ac.uk/), and is free
+*  software, licenced under the GNU Library General Public License,
+*  Version 2, June 1991 (in the distribution as file licence.html,
+*  and also available at http://gate.ac.uk/gate/licence.html).
+*
+*
+*  AllFeaturesOneAnnotation.jape
+*
+*  Sergey Mikhaylov, 19 May 2018
+*
+*  $Id: MorphFeatures.jape,v 1.17 2018-05-19 16:17:00 S_Mikhaylov $
+*/
+
+
+Phase: AllFeaturesOneAnnotation
+Input: AdverseWord_Feat AfterIntake_Feat BracketDescription_Feat ColonDescription_Feat
+	   DashDescription_Feat DisturbSingleWords_Feat Disturbances1_Feat InInternetInstruction1_Feat
+	   InInternetInstruction2_Feat OnXDay_Feat PainVerbsMorph_Feat PatientActions_Feat Question_Feat
+	   Sequence_Feat SingleDescrWords_Feat SingleNO_Feat StartAppearMorph_Feat WasGoodBut_Feat
+	   WasOK_Feat TwoAnnotation_Feat ThreeAnnotation_Feat FourAnnotation_Feat FiveAnnotation_Feat
+	   Disturbances2_Feat Disturbances3_Feat Disturbances4_Feat
+Options: control = all
+
+
+Rule: AdverseWord
+
+(	
+	(
+		{AdverseWord_Feat}
+	): Feat
+): FullFeat
+-->
+{
+String text = null;
+
+//System.out.println ("===== rule AdverseWord ======");
+	AnnotationSet Feat_Set = (AnnotationSet)bindings.get("Feat");
+	FeatureMap Feat_Feat = Factory.newFeatureMap();
+	try {
+			text = (String) doc.getContent().getContent(Feat_Set.firstNode().getOffset(),Feat_Set.lastNode().getOffset()).toString();
+		}
+		catch(gate.util.InvalidOffsetException e) {
+			throw new java.lang.IndexOutOfBoundsException(e.toString());
+		}
+	Feat_Feat.put("string", text);
+	Feat_Feat.put("fname", "AdverseWord");
+	outputAS.add(Feat_Set.firstNode(), Feat_Set.lastNode(), "Features1", Feat_Feat);
+}
+
+Rule: AfterIntake
+
+(	
+	(
+		{AfterIntake_Feat}
+	): Feat
+): FullFeat
+-->
+{
+String text = null;
+
+//System.out.println ("===== rule AfterIntake ======");
+	AnnotationSet Feat_Set = (AnnotationSet)bindings.get("Feat");
+	FeatureMap Feat_Feat = Factory.newFeatureMap();
+	try {
+			text = (String) doc.getContent().getContent(Feat_Set.firstNode().getOffset(),Feat_Set.lastNode().getOffset()).toString();
+		}
+		catch(gate.util.InvalidOffsetException e) {
+			throw new java.lang.IndexOutOfBoundsException(e.toString());
+		}
+	Feat_Feat.put("string", text);
+	Feat_Feat.put("fname", "AfterIntake");
+	outputAS.add(Feat_Set.firstNode(), Feat_Set.lastNode(), "Features1", Feat_Feat);
+}
+
+Rule: BracketDescription
+
+(	
+	(
+		{BracketDescription_Feat}
+	): Feat
+): FullFeat
+-->
+{
+String text = null;
+
+//System.out.println ("===== rule BracketDescription ======");
+	AnnotationSet Feat_Set = (AnnotationSet)bindings.get("Feat");
+	FeatureMap Feat_Feat = Factory.newFeatureMap();
+	try {
+			text = (String) doc.getContent().getContent(Feat_Set.firstNode().getOffset(),Feat_Set.lastNode().getOffset()).toString();
+		}
+		catch(gate.util.InvalidOffsetException e) {
+			throw new java.lang.IndexOutOfBoundsException(e.toString());
+		}
+	Feat_Feat.put("string", text);
+	Feat_Feat.put("fname", "BracketDescription");
+	outputAS.add(Feat_Set.firstNode(), Feat_Set.lastNode(), "Features3", Feat_Feat);
+}
+
+Rule: ColonDescription
+
+(	
+	(
+		{ColonDescription_Feat}
+	): Feat
+): FullFeat
+-->
+{
+String text = null;
+
+//System.out.println ("===== rule ColonDescription ======");
+	AnnotationSet Feat_Set = (AnnotationSet)bindings.get("Feat");
+	FeatureMap Feat_Feat = Factory.newFeatureMap();
+	try {
+			text = (String) doc.getContent().getContent(Feat_Set.firstNode().getOffset(),Feat_Set.lastNode().getOffset()).toString();
+		}
+		catch(gate.util.InvalidOffsetException e) {
+			throw new java.lang.IndexOutOfBoundsException(e.toString());
+		}
+	Feat_Feat.put("string", text);
+	Feat_Feat.put("fname", "ColonDescription");
+	outputAS.add(Feat_Set.firstNode(), Feat_Set.lastNode(), "Features3", Feat_Feat);
+}
+
+Rule: DashDescription
+
+(	
+	(
+		{DashDescription_Feat}
+	): Feat
+): FullFeat
+-->
+{
+String text = null;
+
+//System.out.println ("===== rule DashDescription ======");
+	AnnotationSet Feat_Set = (AnnotationSet)bindings.get("Feat");
+	FeatureMap Feat_Feat = Factory.newFeatureMap();
+	try {
+			text = (String) doc.getContent().getContent(Feat_Set.firstNode().getOffset(),Feat_Set.lastNode().getOffset()).toString();
+		}
+		catch(gate.util.InvalidOffsetException e) {
+			throw new java.lang.IndexOutOfBoundsException(e.toString());
+		}
+	Feat_Feat.put("string", text);
+	Feat_Feat.put("fname", "DashDescription");
+	outputAS.add(Feat_Set.firstNode(), Feat_Set.lastNode(), "Features3", Feat_Feat);
+}
+
+Rule: DisturbSingleWords
+
+(	
+	(
+		{DisturbSingleWords_Feat}
+	): Feat
+): FullFeat
+-->
+{
+String text = null;
+
+//System.out.println ("===== rule DisturbSingleWords ======");
+	AnnotationSet Feat_Set = (AnnotationSet)bindings.get("Feat");
+	FeatureMap Feat_Feat = Factory.newFeatureMap();
+	try {
+			text = (String) doc.getContent().getContent(Feat_Set.firstNode().getOffset(),Feat_Set.lastNode().getOffset()).toString();
+		}
+		catch(gate.util.InvalidOffsetException e) {
+			throw new java.lang.IndexOutOfBoundsException(e.toString());
+		}
+	Feat_Feat.put("string", text);
+	Feat_Feat.put("fname", "DisturbSingleWords");
+	outputAS.add(Feat_Set.firstNode(), Feat_Set.lastNode(), "Features2", Feat_Feat);
+}
+
+Rule: Disturbances1
+
+(	
+	(
+		{Disturbances1_Feat}
+	): Feat
+): FullFeat
+-->
+{
+String text = null;
+
+//System.out.println ("===== rule Disturbances1 ======");
+	AnnotationSet Feat_Set = (AnnotationSet)bindings.get("Feat");
+	FeatureMap Feat_Feat = Factory.newFeatureMap();
+	try {
+			text = (String) doc.getContent().getContent(Feat_Set.firstNode().getOffset(),Feat_Set.lastNode().getOffset()).toString();
+		}
+		catch(gate.util.InvalidOffsetException e) {
+			throw new java.lang.IndexOutOfBoundsException(e.toString());
+		}
+	Feat_Feat.put("string", text);
+	Feat_Feat.put("fname", "Disturbances1");
+	outputAS.add(Feat_Set.firstNode(), Feat_Set.lastNode(), "Features1", Feat_Feat);
+}
+
+Rule: InInternetInstruction1
+
+(	
+	(
+		{InInternetInstruction1_Feat}
+	): Feat
+): FullFeat
+-->
+{
+String text = null;
+
+//System.out.println ("===== rule InInternetInstruction1 ======");
+	AnnotationSet Feat_Set = (AnnotationSet)bindings.get("Feat");
+	FeatureMap Feat_Feat = Factory.newFeatureMap();
+	try {
+			text = (String) doc.getContent().getContent(Feat_Set.firstNode().getOffset(),Feat_Set.lastNode().getOffset()).toString();
+		}
+		catch(gate.util.InvalidOffsetException e) {
+			throw new java.lang.IndexOutOfBoundsException(e.toString());
+		}
+	Feat_Feat.put("string", text);
+	Feat_Feat.put("fname", "InInternetInstruction1");
+	outputAS.add(Feat_Set.firstNode(), Feat_Set.lastNode(), "Features2", Feat_Feat);
+}
+
+Rule: InInternetInstruction2
+
+(	
+	(
+		{InInternetInstruction2_Feat}
+	): Feat
+): FullFeat
+-->
+{
+String text = null;
+
+//System.out.println ("===== rule InInternetInstruction2 ======");
+	AnnotationSet Feat_Set = (AnnotationSet)bindings.get("Feat");
+	FeatureMap Feat_Feat = Factory.newFeatureMap();
+	try {
+			text = (String) doc.getContent().getContent(Feat_Set.firstNode().getOffset(),Feat_Set.lastNode().getOffset()).toString();
+		}
+		catch(gate.util.InvalidOffsetException e) {
+			throw new java.lang.IndexOutOfBoundsException(e.toString());
+		}
+	Feat_Feat.put("string", text);
+	Feat_Feat.put("fname", "InInternetInstruction2");
+	outputAS.add(Feat_Set.firstNode(), Feat_Set.lastNode(), "Features2", Feat_Feat);
+}
+
+Rule: OnXDay
+
+(	
+	(
+		{OnXDay_Feat}
+	): Feat
+): FullFeat
+-->
+{
+String text = null;
+
+//System.out.println ("===== rule OnXDay ======");
+	AnnotationSet Feat_Set = (AnnotationSet)bindings.get("Feat");
+	FeatureMap Feat_Feat = Factory.newFeatureMap();
+	try {
+			text = (String) doc.getContent().getContent(Feat_Set.firstNode().getOffset(),Feat_Set.lastNode().getOffset()).toString();
+		}
+		catch(gate.util.InvalidOffsetException e) {
+			throw new java.lang.IndexOutOfBoundsException(e.toString());
+		}
+	Feat_Feat.put("string", text);
+	Feat_Feat.put("fname", "OnXDay");
+	outputAS.add(Feat_Set.firstNode(), Feat_Set.lastNode(), "Features2", Feat_Feat);
+}
+
+Rule: PainVerbsMorph
+
+(	
+	(
+		{PainVerbsMorph_Feat}
+	): Feat
+): FullFeat
+-->
+{
+String text = null;
+
+//System.out.println ("===== rule PainVerbsMorph ======");
+	AnnotationSet Feat_Set = (AnnotationSet)bindings.get("Feat");
+	FeatureMap Feat_Feat = Factory.newFeatureMap();
+	try {
+			text = (String) doc.getContent().getContent(Feat_Set.firstNode().getOffset(),Feat_Set.lastNode().getOffset()).toString();
+		}
+		catch(gate.util.InvalidOffsetException e) {
+			throw new java.lang.IndexOutOfBoundsException(e.toString());
+		}
+	Feat_Feat.put("string", text);
+	Feat_Feat.put("fname", "PainVerbsMorph");
+	outputAS.add(Feat_Set.firstNode(), Feat_Set.lastNode(), "Features1", Feat_Feat);
+}
+
+Rule: PatientActions
+
+(	
+	(
+		{PatientActions_Feat}
+	): Feat
+): FullFeat
+-->
+{
+String text = null;
+
+//System.out.println ("===== rule PatientActions ======");
+	AnnotationSet Feat_Set = (AnnotationSet)bindings.get("Feat");
+	FeatureMap Feat_Feat = Factory.newFeatureMap();
+	try {
+			text = (String) doc.getContent().getContent(Feat_Set.firstNode().getOffset(),Feat_Set.lastNode().getOffset()).toString();
+		}
+		catch(gate.util.InvalidOffsetException e) {
+			throw new java.lang.IndexOutOfBoundsException(e.toString());
+		}
+	Feat_Feat.put("string", text);
+	Feat_Feat.put("fname", "PatientActions");
+	outputAS.add(Feat_Set.firstNode(), Feat_Set.lastNode(), "Features2", Feat_Feat);
+}
+
+Rule: Question
+
+(	
+	(
+		{Question_Feat}
+	): Feat
+): FullFeat
+-->
+{
+String text = null;
+
+//System.out.println ("===== rule Question ======");
+	AnnotationSet Feat_Set = (AnnotationSet)bindings.get("Feat");
+	FeatureMap Feat_Feat = Factory.newFeatureMap();
+	try {
+			text = (String) doc.getContent().getContent(Feat_Set.firstNode().getOffset(),Feat_Set.lastNode().getOffset()).toString();
+		}
+		catch(gate.util.InvalidOffsetException e) {
+			throw new java.lang.IndexOutOfBoundsException(e.toString());
+		}
+	Feat_Feat.put("string", text);
+	Feat_Feat.put("fname", "Question");
+	outputAS.add(Feat_Set.firstNode(), Feat_Set.lastNode(), "Features3", Feat_Feat);
+}
+
+Rule: Sequence
+
+(	
+	(
+		{Sequence_Feat}
+	): Feat
+): FullFeat
+-->
+{
+String text = null;
+
+//System.out.println ("===== rule Sequence ======");
+	AnnotationSet Feat_Set = (AnnotationSet)bindings.get("Feat");
+	FeatureMap Feat_Feat = Factory.newFeatureMap();
+	try {
+			text = (String) doc.getContent().getContent(Feat_Set.firstNode().getOffset(),Feat_Set.lastNode().getOffset()).toString();
+		}
+		catch(gate.util.InvalidOffsetException e) {
+			throw new java.lang.IndexOutOfBoundsException(e.toString());
+		}
+	Feat_Feat.put("string", text);
+	Feat_Feat.put("fname", "Sequence");
+	outputAS.add(Feat_Set.firstNode(), Feat_Set.lastNode(), "Features2", Feat_Feat);
+}
+
+Rule: SingleDescrWords
+
+(	
+	(
+		{SingleDescrWords_Feat}
+	): Feat
+): FullFeat
+-->
+{
+String text = null;
+
+//System.out.println ("===== rule SingleDescrWords ======");
+	AnnotationSet Feat_Set = (AnnotationSet)bindings.get("Feat");
+	FeatureMap Feat_Feat = Factory.newFeatureMap();
+	try {
+			text = (String) doc.getContent().getContent(Feat_Set.firstNode().getOffset(),Feat_Set.lastNode().getOffset()).toString();
+		}
+		catch(gate.util.InvalidOffsetException e) {
+			throw new java.lang.IndexOutOfBoundsException(e.toString());
+		}
+	Feat_Feat.put("string", text);
+	Feat_Feat.put("fname", "SingleDescrWords");
+	outputAS.add(Feat_Set.firstNode(), Feat_Set.lastNode(), "Features2", Feat_Feat);
+}
+
+Rule: SingleNO
+
+(	
+	(
+		{SingleNO_Feat}
+	): Feat
+): FullFeat
+-->
+{
+String text = null;
+
+//System.out.println ("===== rule SingleNO ======");
+	AnnotationSet Feat_Set = (AnnotationSet)bindings.get("Feat");
+	FeatureMap Feat_Feat = Factory.newFeatureMap();
+	try {
+			text = (String) doc.getContent().getContent(Feat_Set.firstNode().getOffset(),Feat_Set.lastNode().getOffset()).toString();
+		}
+		catch(gate.util.InvalidOffsetException e) {
+			throw new java.lang.IndexOutOfBoundsException(e.toString());
+		}
+	Feat_Feat.put("string", text);
+	Feat_Feat.put("fname", "SingleNO");
+	outputAS.add(Feat_Set.firstNode(), Feat_Set.lastNode(), "Features3", Feat_Feat);
+}
+
+Rule: StartAppearMorph
+
+(	
+	(
+		{StartAppearMorph_Feat}
+	): Feat
+): FullFeat
+-->
+{
+String text = null;
+
+//System.out.println ("===== rule StartAppearMorph ======");
+	AnnotationSet Feat_Set = (AnnotationSet)bindings.get("Feat");
+	FeatureMap Feat_Feat = Factory.newFeatureMap();
+	try {
+			text = (String) doc.getContent().getContent(Feat_Set.firstNode().getOffset(),Feat_Set.lastNode().getOffset()).toString();
+		}
+		catch(gate.util.InvalidOffsetException e) {
+			throw new java.lang.IndexOutOfBoundsException(e.toString());
+		}
+	Feat_Feat.put("string", text);
+	Feat_Feat.put("fname", "StartAppearMorph");
+	outputAS.add(Feat_Set.firstNode(), Feat_Set.lastNode(), "Features1", Feat_Feat);
+}
+
+Rule: WasGoodBut
+
+(	
+	(
+		{WasGoodBut_Feat}
+	): Feat
+): FullFeat
+-->
+{
+String text = null;
+
+//System.out.println ("===== rule WasGoodBut ======");
+	AnnotationSet Feat_Set = (AnnotationSet)bindings.get("Feat");
+	FeatureMap Feat_Feat = Factory.newFeatureMap();
+	try {
+			text = (String) doc.getContent().getContent(Feat_Set.firstNode().getOffset(),Feat_Set.lastNode().getOffset()).toString();
+		}
+		catch(gate.util.InvalidOffsetException e) {
+			throw new java.lang.IndexOutOfBoundsException(e.toString());
+		}
+	Feat_Feat.put("string", text);
+	Feat_Feat.put("fname", "WasGoodBut");
+	outputAS.add(Feat_Set.firstNode(), Feat_Set.lastNode(), "Features1", Feat_Feat);
+}
+
+Rule: WasOK
+
+(	
+	(
+		{WasOK_Feat}
+	): Feat
+): FullFeat
+-->
+{
+String text = null;
+
+//System.out.println ("===== rule WasOK ======");
+	AnnotationSet Feat_Set = (AnnotationSet)bindings.get("Feat");
+	FeatureMap Feat_Feat = Factory.newFeatureMap();
+	try {
+			text = (String) doc.getContent().getContent(Feat_Set.firstNode().getOffset(),Feat_Set.lastNode().getOffset()).toString();
+		}
+		catch(gate.util.InvalidOffsetException e) {
+			throw new java.lang.IndexOutOfBoundsException(e.toString());
+		}
+	Feat_Feat.put("string", text);
+	Feat_Feat.put("fname", "WasOK");
+	outputAS.add(Feat_Set.firstNode(), Feat_Set.lastNode(), "Features1", Feat_Feat);
+}
+
+Rule: TwoAnnotation
+
+(	
+	(
+		{TwoAnnotation_Feat}
+	): Feat
+): FullFeat
+-->
+{
+String text = null;
+
+//System.out.println ("===== rule TwoAnnotation ======");
+	AnnotationSet Feat_Set = (AnnotationSet)bindings.get("Feat");
+	FeatureMap Feat_Feat = Factory.newFeatureMap();
+	try {
+			text = (String) doc.getContent().getContent(Feat_Set.firstNode().getOffset(),Feat_Set.lastNode().getOffset()).toString();
+		}
+		catch(gate.util.InvalidOffsetException e) {
+			throw new java.lang.IndexOutOfBoundsException(e.toString());
+		}
+	Feat_Feat.put("string", text);
+	Feat_Feat.put("fname", "TwoAnnotation_Feat");
+	outputAS.add(Feat_Set.firstNode(), Feat_Set.lastNode(), "Features4", Feat_Feat);
+}
+
+Rule: ThreeAnnotation
+
+(	
+	(
+		{ThreeAnnotation_Feat}
+	): Feat
+): FullFeat
+-->
+{
+String text = null;
+
+//System.out.println ("===== rule ThreeAnnotation ======");
+	AnnotationSet Feat_Set = (AnnotationSet)bindings.get("Feat");
+	FeatureMap Feat_Feat = Factory.newFeatureMap();
+	try {
+			text = (String) doc.getContent().getContent(Feat_Set.firstNode().getOffset(),Feat_Set.lastNode().getOffset()).toString();
+		}
+		catch(gate.util.InvalidOffsetException e) {
+			throw new java.lang.IndexOutOfBoundsException(e.toString());
+		}
+	Feat_Feat.put("string", text);
+	Feat_Feat.put("fname", "ThreeAnnotation_Feat");
+	outputAS.add(Feat_Set.firstNode(), Feat_Set.lastNode(), "Features4", Feat_Feat);
+}
+
+Rule: FourAnnotation
+
+(	
+	(
+		{FourAnnotation_Feat}
+	): Feat
+): FullFeat
+-->
+{
+String text = null;
+
+//System.out.println ("===== rule FourAnnotation ======");
+	AnnotationSet Feat_Set = (AnnotationSet)bindings.get("Feat");
+	FeatureMap Feat_Feat = Factory.newFeatureMap();
+	try {
+			text = (String) doc.getContent().getContent(Feat_Set.firstNode().getOffset(),Feat_Set.lastNode().getOffset()).toString();
+		}
+		catch(gate.util.InvalidOffsetException e) {
+			throw new java.lang.IndexOutOfBoundsException(e.toString());
+		}
+	Feat_Feat.put("string", text);
+	Feat_Feat.put("fname", "FourAnnotation_Feat");
+	outputAS.add(Feat_Set.firstNode(), Feat_Set.lastNode(), "Features4", Feat_Feat);
+}
+
+Rule: FiveAnnotation
+
+(	
+	(
+		{FiveAnnotation_Feat}
+	): Feat
+): FullFeat
+-->
+{
+String text = null;
+
+//System.out.println ("===== rule FiveAnnotation ======");
+	AnnotationSet Feat_Set = (AnnotationSet)bindings.get("Feat");
+	FeatureMap Feat_Feat = Factory.newFeatureMap();
+	try {
+			text = (String) doc.getContent().getContent(Feat_Set.firstNode().getOffset(),Feat_Set.lastNode().getOffset()).toString();
+		}
+		catch(gate.util.InvalidOffsetException e) {
+			throw new java.lang.IndexOutOfBoundsException(e.toString());
+		}
+	Feat_Feat.put("string", text);
+	Feat_Feat.put("fname", "FiveAnnotation_Feat");
+	outputAS.add(Feat_Set.firstNode(), Feat_Set.lastNode(), "Features4", Feat_Feat);
+}
+
+Rule: Disturbances2
+
+(	
+	(
+		{Disturbances2_Feat}
+	): Feat
+): FullFeat
+-->
+{
+String text = null;
+
+//System.out.println ("===== rule Disturbances2 ======");
+	AnnotationSet Feat_Set = (AnnotationSet)bindings.get("Feat");
+	FeatureMap Feat_Feat = Factory.newFeatureMap();
+	try {
+			text = (String) doc.getContent().getContent(Feat_Set.firstNode().getOffset(),Feat_Set.lastNode().getOffset()).toString();
+		}
+		catch(gate.util.InvalidOffsetException e) {
+			throw new java.lang.IndexOutOfBoundsException(e.toString());
+		}
+	Feat_Feat.put("string", text);
+	Feat_Feat.put("fname", "Disturbances2");
+	outputAS.add(Feat_Set.firstNode(), Feat_Set.lastNode(), "Features1", Feat_Feat);
+}
+
+Rule: Disturbances3
+
+(	
+	(
+		{Disturbances3_Feat}
+	): Feat
+): FullFeat
+-->
+{
+String text = null;
+
+//System.out.println ("===== rule Disturbances3 ======");
+	AnnotationSet Feat_Set = (AnnotationSet)bindings.get("Feat");
+	FeatureMap Feat_Feat = Factory.newFeatureMap();
+	try {
+			text = (String) doc.getContent().getContent(Feat_Set.firstNode().getOffset(),Feat_Set.lastNode().getOffset()).toString();
+		}
+		catch(gate.util.InvalidOffsetException e) {
+			throw new java.lang.IndexOutOfBoundsException(e.toString());
+		}
+	Feat_Feat.put("string", text);
+	Feat_Feat.put("fname", "Disturbances3");
+	outputAS.add(Feat_Set.firstNode(), Feat_Set.lastNode(), "Features1", Feat_Feat);
+}
+
+Rule: Disturbances4
+
+(	
+	(
+		{Disturbances4_Feat}
+	): Feat
+): FullFeat
+-->
+{
+String text = null;
+
+//System.out.println ("===== rule Disturbances4 ======");
+	AnnotationSet Feat_Set = (AnnotationSet)bindings.get("Feat");
+	FeatureMap Feat_Feat = Factory.newFeatureMap();
+	try {
+			text = (String) doc.getContent().getContent(Feat_Set.firstNode().getOffset(),Feat_Set.lastNode().getOffset()).toString();
+		}
+		catch(gate.util.InvalidOffsetException e) {
+			throw new java.lang.IndexOutOfBoundsException(e.toString());
+		}
+	Feat_Feat.put("string", text);
+	Feat_Feat.put("fname", "Disturbances4");
+	outputAS.add(Feat_Set.firstNode(), Feat_Set.lastNode(), "Features1", Feat_Feat);
+}
