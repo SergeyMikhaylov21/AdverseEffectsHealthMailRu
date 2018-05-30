@@ -24,6 +24,8 @@
 	<li>Apply Classification - инструмент для запуска классификации (один из ресурсов загружаемого плагина GATE Learning Framework (https://gatenlp.github.io/gateplugin-LearningFramework/)).</li>
 </ol>
 
+![alt text](https://github.com/SergeyMikhaylov21/AdverseEffectsHealthMailRu/blob/master/pipeline.png)
+
 <h4>Настройка параметров Apply Classification</h4>
 <ul>
 	<li>algorithmParameters: -t 0 -c 5 -w0 1 -w1 2.5</li>
